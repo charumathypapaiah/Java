@@ -1,0 +1,19 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+// One Best Example to use While Loop in Java
+// Get inputs from User and terminate the loop until the user hits Quit
+// Tips: 1. Use While loop when you don't know how many times the loop needs to be executed ahead of time. 2. Always declare scanner objects outside loop, mostly at the beginning to avoid creating n number of scanner objects inside loop
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Best Example for While Loop");
+
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+        while (!(input.equals("quit"))) {
+            System.out.print("Input: ");
+            input = scanner.next().toLowerCase();
+            System.out.println(input);
+        }
+    }
+}
