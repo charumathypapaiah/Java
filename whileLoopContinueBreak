@@ -1,0 +1,24 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+// One Best Example to use While Loop in Java with continue and break statements
+// Get inputs from User and terminate the loop until the user enters Quit and pass the control to beginning of the loop if the User enters pass
+// Tips: 1. Use While loop when you don't know how many times the loop needs to be executed ahead of time. 2. Always declare scanner objects outside loop, mostly at the beginning to avoid creating n number of scanner objects inside loop
+// Tip: Make use of continue and break statement where needed after checking for any specific condition
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Best Example for While Loop with Continue & Break statement");
+
+        Scanner scanner = new Scanner(System.in);
+        String input = "";
+        while (!(input.equals("quit"))) {
+            System.out.print("Input: ");
+            input = scanner.next().toLowerCase();
+            if(input.equals("quit"))
+                break;
+            if(input.equals("pass"))
+                continue;
+            System.out.println(input);
+        }
+    }
+}
