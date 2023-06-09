@@ -1,0 +1,20 @@
+
+// One Good Example to use for and for each loop
+// Restrictions on using For each loop : 1. Cannot navigate by INDEX, and cannot iterate through the array in reverse order. Use for loop in such cases.
+// Tip : Make sure to declare the variable based on the type of data present in the array
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Comparison between for and for each loop");
+                String[] fruits = {"Apple","Orange","Banana"};
+                for(int i= fruits.length-1; i>=0; i--){
+                    System.out.println(fruits[i]);
+                }
+
+        for (String fruit:fruits
+             ) {
+            System.out.println(fruit);
+        }
+
+        }
+    }
+
