@@ -1,0 +1,69 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+// Mortgage Calculator
+// Get inputs from User : Principal (P), Annual Interest Rate in percentage(retrieve r as monthly interest rate by multiplying annual percentage by months in a year), Tenure(n) and find Mortgage Value (M)
+// Formula : M= P * ( r(1+r)n / (1+r)n -1)
+// Input Validations on Principal, Interest, Tenure are : Enter a number between 1000 and 1000000 for Principal,
+// Enter a number greater than 0 and less than or equal to 30 for Interest
+// Enter a value between 1 and 30 for Tenure
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Mortgage Calculator");
+
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+
+        Scanner scanner = new Scanner(System.in);
+
+        long principal =0;
+        float monthlyInterestRate;
+        int periodInMonths=0;
+
+
+        while(true) {
+            System.out.print("Principal ($1K - $1M): ");
+            principal = scanner.nextLong();
+            if (principal >=1000 && principal<=10000000){
+                break;
+            }
+            else {
+                System.out.println("Enter a number between 1000 and 1000000 for Principal");
+            }
+                
+        }
+
+        while(true) {
+            System.out.print("Annual Interest Rate: ");
+            monthlyInterestRate = scanner.nextFloat();
+            if (monthlyInterestRate >=1 && monthlyInterestRate<=30){
+                monthlyInterestRate = (monthlyInterestRate)/PERCENT/MONTHS_IN_YEAR;
+                break;
+            }
+            else {
+                System.out.println("Enter a value between 1 and 30 for Interest");
+            }
+
+        }
+
+        while(true) {
+            System.out.print("Period (in Years): ");
+            periodInMonths = scanner.nextInt();
+            if (periodInMonths >=1 && periodInMonths<=30){
+                periodInMonths = periodInMonths * MONTHS_IN_YEAR;
+                break;
+            }
+            else {
+                System.out.println("Enter a value between 1 and 30 for Tenure");
+            }
+        }
+
+        double mortgageValue = principal * ( (monthlyInterestRate* Math.pow(1+monthlyInterestRate,periodInMonths)) / (Math.pow(1+monthlyInterestRate,periodInMonths) - 1));
+
+        String mortgageValueFormatted = NumberFormat.getCurrencyInstance().format(mortgageValue);
+
+        System.out.println("Mortgage Value: " + mortgageValueFormatted);
+
+    }
+}
