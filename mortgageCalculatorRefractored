@@ -1,0 +1,52 @@
+import java.text.NumberFormat;
+import java.util.Scanner;
+
+// Mortgage Calculator
+// Get inputs from User : Principal (P), Annual Interest Rate in percentage(retrieve r as monthly interest rate by multiplying annual percentage by months in a year), Tenure(n) and find Mortgage Value (M)
+// Formula : M= P * ( r(1+r)n / (1+r)n -1)
+// Input Validations on Principal, Interest, Tenure are : Enter a number between 1000 and 1000000 for Principal,
+// Enter a number greater than 0 and less than or equal to 30 for Interest
+// Enter a value between 1 and 30 for Tenure
+
+public class Main {
+    public static void main(String[] args) {
+        
+        System.out.println("Mortgage Calculator");
+
+        int principal=(int) readValue("Principal ($1K - $1M): ",1000,1_000_000);
+        float annualInterest=(float) readValue("Annual Interest Rate: ",1,30);
+        short years=(short) readValue("Period (in Years): ",1,30);
+
+        double mortgage=calculateMortgage(principal,annualInterest,years);
+        String mortgageValueFormatted = NumberFormat.getCurrencyInstance().format(mortgage);
+
+        System.out.println("Mortgage Value: " + mortgageValueFormatted);
+    }
+        public static double readValue(String prompt,int min, int max){
+
+            Scanner scanner = new Scanner(System.in);
+            double value;
+            while (true) {
+                System.out.print(prompt);
+                value = scanner.nextFloat();
+                if (value >= min && value <= max)
+                    break;
+                System.out.println("Enter a number between " + min +" and "+ max);
+            }
+            return value;
+        }
+        public static double calculateMortgage(
+                int principal,
+                float annualInterest,
+                short years) {
+
+            final byte MONTHS_IN_YEAR = 12;
+            final byte PERCENT = 100;
+
+            float monthlyInterestRate = (annualInterest) / PERCENT / MONTHS_IN_YEAR;
+            years = (short)(years * MONTHS_IN_YEAR);
+
+            double mortgageValue = principal * ((monthlyInterestRate * Math.pow(1 + monthlyInterestRate, years)) / (Math.pow(1 + monthlyInterestRate, years) - 1));
+            return mortgageValue;
+        }
+    }
